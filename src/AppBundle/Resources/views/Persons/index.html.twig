@@ -1,0 +1,92 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h2 class="section-header">Personenübersicht</h2>
+    <div class="tile row col s12">
+        <div class="tile-content">
+            <div class="input-field col s4">
+                <input placeholder="Suche" id="search" type="text">
+            </div>
+            <table class="responsive-table highlight">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Nachname (geb.)</th>
+                    <th>Geschlecht</th>
+                    <th>Mutter</th>
+                    <th>Vater</th>
+                    <th>Geboren am (Ort)</th>
+                    <th>Gestorben am (Ort)</th>
+                    <th>Beruf</th>
+                    <th>Besonderes</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td><a href="{{ path('person_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        <td>{{ entity.fullname }}</td>
+                        <td>{{ entity.nachname }} ({{ entity.nachnameGeboren }})</td>
+                        <td>{{ entity.geschlecht }}</td>
+
+                        {% if entity.mutter is not null %}
+                            <td><a href="{{ path('person_show', {'id' : entity.mutter.id}) }}">{{ entity.mutter.fullname }}</a></td>
+                        {% else %}
+                            <td>null</td>
+                        {% endif %}
+
+                        {% if entity.vater is not null %}
+                            <td><a href="{{ path('person_show', {'id' : entity.vater.id}) }}">{{ entity.vater.fullname }}</a></td>
+                        {% else %}
+                            <td>null</td>
+                        {% endif %}
+
+                        <td>{{ entity.geborenAm|date('d.m.Y') }} ({{ entity.geburtsort }})</td>
+                        <td>{% if entity.gestorbenAm %}{{ entity.gestorbenAm|date('d.m.Y') }} ({{ entity.sterbeort }}){% endif %}</td>
+                        <td>{{ entity.beruf }}</td>
+                        <td>{{ entity.besonderes }}</td>
+                        <td><a class='dropdown-button' href='#' data-activates='dropdown1'><i class="material-icons">more_vert</i></a></td>
+                        <!-- Dropdown Trigger -->
+
+
+                        <!-- Dropdown Structure -->
+                        <ul id='dropdown1' class='dropdown-content'>
+                            <li>
+                                <a href="{{ path('person_show', { 'id': entity.id }) }}"><i class="material-icons">search</i> Show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('person_edit', { 'id': entity.id }) }}"><i class="material-icons">mode_edit</i> Edit</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('person_delete', { 'id': entity.id }) }}"><i class="material-icons">close</i> Delete</a>
+                            </li>
+                        </ul>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+                <a class="btn-floating btn-large" href="{{ path('person_new') }}">
+                    <i class="large material-icons">add</i>
+                </a>
+            </div>
+            <div class="row col s12">
+                <div class="col s4">Zeige xx Einträge an.</div>
+                <div class="col s8">
+                    <ul class="pagination center ">
+                        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                        <li class="active"><a href="#!">1</a></li>
+                        <li class="waves-effect"><a href="#!">2</a></li>
+                        <li class="waves-effect"><a href="#!">3</a></li>
+                        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

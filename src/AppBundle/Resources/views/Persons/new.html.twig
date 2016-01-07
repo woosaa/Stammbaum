@@ -1,0 +1,145 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+    {{ form_start(form) }}
+    <div class="row col s12">
+
+        <div class="col s6">
+            <h2 class="section-header">Personendaten</h2>
+            <div class="tile">
+                <div class="tile-content">
+                    <div class="row">
+                        <div class="col s6">
+                            {{ form_label(form.vorname) }}
+                            {{ form_errors(form.vorname) }}
+                            {{ form_widget(form.vorname) }}
+                        </div>
+                        <div class="col s3">
+                            {{ form_label(form.nachname) }}
+                            {{ form_errors(form.nachname) }}
+                            {{ form_widget(form.nachname) }}
+                        </div>
+
+                        <div class="col s3">
+                            {{ form_label(form.nachnameGeboren) }}
+                            {{ form_errors(form.nachnameGeboren) }}
+                            {{ form_widget(form.nachnameGeboren) }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            {{ form_label(form.geschlecht) }}
+                            {{ form_errors(form.geschlecht) }}
+                            {{ form_widget(form.geschlecht) }}
+                        </div>
+                    </div>
+
+                    <div class="row" data-group="geboren">
+                        <div class="col s4">
+                            {{ form_label(form.geborenAm) }}
+                            {{ form_errors(form.geborenAm) }}
+                            {{ form_widget(form.geborenAm) }}
+                        </div>
+                        <div class="col s2">
+                            {{ form_label(form.geburtsortplz) }}
+                            {{ form_errors(form.geburtsortplz) }}
+                            {{ form_widget(form.geburtsortplz) }}
+                        </div>
+
+                        <div class="col s6">
+                            {{ form_label(form.geburtsort) }}
+                            {{ form_errors(form.geburtsort) }}
+                            {{ form_widget(form.geburtsort) }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            {{ form_label(form.beruf) }}
+                            {{ form_errors(form.beruf) }}
+                            {{ form_widget(form.beruf) }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            {{ form_label(form.besonderes) }}
+                            {{ form_errors(form.besonderes) }}
+                            {{ form_widget(form.besonderes) }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            {{ form_label(form.isdead) }}
+                            {{ form_errors(form.isdead) }}
+                            {{ form_widget(form.isdead) }}
+                        </div>
+                    </div>
+
+                    <div class="row" data-group="gestorben">
+                        <div class="col s4">
+                            {{ form_label(form.gestorbenAm) }}
+                            {{ form_errors(form.gestorbenAm) }}
+                            {{ form_widget(form.gestorbenAm) }}
+                        </div>
+                        <div class="col s2">
+                            {{ form_label(form.sterbeortplz) }}
+                            {{ form_errors(form.sterbeortplz) }}
+                            {{ form_widget(form.sterbeortplz) }}
+                        </div>
+
+                        <div class="col s6">
+                            {{ form_label(form.sterbeort) }}
+                            {{ form_errors(form.sterbeort) }}
+                            {{ form_widget(form.sterbeort) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s6">
+            <h2 class="section-header">Beziehungen</h2>
+            <div class="tile">
+                <div class="tile-content">
+                    <div class="tile-content">
+                        <div class="row">
+                            <div class="col s6">
+                                {{ form_label(form.mutter) }}
+                                {{ form_errors(form.mutter) }}
+                                {{ form_widget(form.mutter) }}
+                            </div>
+                            <div class="col s6">
+                                {{ form_label(form.vater) }}
+                                {{ form_errors(form.vater) }}
+                                {{ form_widget(form.vater) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            {{ form_label(form.ismarried) }}
+                            {{ form_errors(form.ismarried) }}
+                            {{ form_widget(form.ismarried) }}
+                        </div>
+
+                        <div class="row" data-group="verheiratet">
+                            <div class="col s12">
+                                {{ form_label(form.verheiratetMit) }}
+                                {{ form_errors(form.verheiratetMit) }}
+                                {{ form_widget(form.verheiratetMit) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="row s2 offset-s10 right">
+        <div class="col"><a class="btn-flat" href="{{ path('person') }}">Abbrechen</a></div>
+        <div class="col">{{ form_widget(form.submit) }}</div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,16 @@
+
+parameters:
+    stabam.person.handler.class: AppBundle\Handler\PersonHandler
+    stabam.person.class: AppBundle\Entity\Person
+
+    stabam.person.form.handler.class: AppBundle\Handler\PersonFormHandler
+
+
+services:
+    stabam.person.handler:
+        class: '%stabam.person.handler.class%'
+        arguments: ["@doctrine.orm.entity_manager",'%stabam.person.class%']
+
+    stabam.person.form.handler:
+        class: '%stabam.person.form.handler.class%'
+        arguments: ['@form.factory', '@router', '@stabam.person.handler']

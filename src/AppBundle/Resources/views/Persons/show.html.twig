@@ -1,0 +1,127 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+
+    <div class="row col s12">
+        <div class="col s5">
+            <h2 class="section-header">{{ entity.fullname }}</h2>
+            <div class="tile">
+                <div class="tile-content">
+                    <table class="record_properties">
+                        <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ entity.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Vorname</th>
+                            <td>{{ entity.vorname }}</td>
+                        </tr>
+                        <tr>
+                            <th>Vorname2</th>
+                            <td>{{ entity.vorname2 }}</td>
+                        </tr>
+                        <tr>
+                            <th>Vorname3</th>
+                            <td>{{ entity.vorname3 }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nachname</th>
+                            <td>{{ entity.nachname }}</td>
+                        </tr>
+                        <tr>
+                            <th>Geschlecht</th>
+                            <td>{{ entity.geschlecht }}</td>
+                        </tr>
+                        <tr>
+                            <th>Geborenam</th>
+                            <td>{{ entity.geborenAm|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                        <tr>
+                            <th>Geburtsort</th>
+                            <td>{{ entity.geburtsort }}</td>
+                        </tr>
+                        <tr>
+                            <th>Beruf</th>
+                            <td>{{ entity.beruf }}</td>
+                        </tr>
+                        <tr>
+                            <th>Besonderes</th>
+                            <td>{{ entity.besonderes }}</td>
+                        </tr>
+                        <tr>
+                            <th>Gestorbenam</th>
+                            <td>{{ entity.gestorbenAm|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                        <tr>
+                            <th>Sterbeort</th>
+                            <td>{{ entity.sterbeort }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col s7">
+            <h2 class="section-header">Ereignisse</h2>
+            <div class="ui-timline-container">
+                <section class="ui-timeline">
+
+                    <!--                   <article class="tl-item">
+                                           <div class="tl-body">
+                                               <div class="tl-entry">
+                                                   <div class="tl-caption">
+                                                       <a href="javascript:;" class="btn btn-primary btn-block">Gestorben</a>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </article>
+                   -->
+
+                    {% if entity.gestorbenAm %}
+                    <article class="tl-item alt">
+                        <div class="tl-body">
+                            <div class="tl-entry">
+                                <div class="tl-time">{{ entity.gestorbenAm|date('d.m.Y') }}</div>
+                                <div class="tl-icon btn-icon-round btn-icon white-text black "><i class="fa fa-crisscross fa-2x"></i></div>
+                                <div class="tl-content">
+                                    <h4 class="tl-tile text-primary">Gestorben</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    {% endif %}
+
+                    <article class="tl-item">
+                        <div class="tl-body">
+                            <div class="tl-entry">
+                                <div class="tl-time">16.12.2015</div>
+                                <div class="tl-icon btn-icon-round btn-icon white-text red "><i class="fa fa-heart"></i></div>
+                                <div class="tl-content">
+                                    <h4 class="tl-tile text-primary">Geheiratet</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="tl-item alt">
+                        <div class="tl-body">
+                            <div class="tl-entry">
+                                <div class="tl-time">{{ entity.geborenAm|date('d.m.Y')  }}</div>
+                                <div class="tl-icon green white-text"><i class="fa fa-asterisk"></i></div>
+                                <div class="tl-content">
+                                    <h4 class="tl-tile text-danger">Geboren in {{ entity.geburtsort }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                </section>
+            </div>
+
+        </div>
+
+
+    </div>
+{% endblock %}

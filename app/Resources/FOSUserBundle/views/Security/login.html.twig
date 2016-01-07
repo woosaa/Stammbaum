@@ -1,0 +1,78 @@
+{% extends "::base.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block stabam_navbar %}
+{% endblock stabam_navbar %}
+
+{% block stabam_main %}
+{% endblock stabam_main %}
+
+{% block fos_user_content %}
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+
+    <div id="login-page" class="row">
+        <div class="col s3 z-depth-4 card-panel offset-s4">
+
+            {% if app.request.hasPreviousSession %}
+                {% for type, messages in app.session.flashbag.all() %}
+                    {% for message in messages %}
+                        <div class="flash-{{ type }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+
+
+            <form class="login-form" action="{{ path("fos_user_security_check") }}" method="post">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+                <div class="row">
+                    <div class="input-field col s12 center">
+                        <!-- <img src="images/login-logo.png" alt="" class="circle responsive-img valign profile-image-login"> -->
+                        <p class="center login-form-text">Stabam App</p>
+                    </div>
+                </div>
+
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <i class="mdi-social-person-outline prefix"></i>
+                        <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                        <label for="username" class="center-align">{{ 'security.login.username'|trans }}</label>
+                    </div>
+                </div>
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <i class="mdi-action-lock-outline prefix"></i>
+                        <input type="password" id="password" name="_password" required="required" />
+                        <label for="password">{{ 'security.login.password'|trans }}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m12 l12  login-text">
+                        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="submit" class="btn waves-effect waves-light col s12" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6 m6 l6">
+                        <p class="margin medium-small"><a href="/register">Register Now!</a></p>
+                    </div>
+                    <div class="input-field col s6 m6 l6">
+                        <p class="margin right-align medium-small"><a href="/resetting">Forgot password ?</a></p>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+{% endblock fos_user_content %}
