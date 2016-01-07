@@ -91,4 +91,7 @@ fos_user:
 fos_rest:
     routing_loader:
         default_format: json
+    service:
+      inflector: stabam.util.inflector
 
+nelmio_api_doc: ~

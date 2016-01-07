@@ -2,7 +2,6 @@
 parameters:
     stabam.person.handler.class: AppBundle\Handler\PersonHandler
     stabam.person.class: AppBundle\Entity\Person
-
     stabam.person.form.handler.class: AppBundle\Handler\PersonFormHandler
 
 
@@ -14,3 +13,6 @@ services:
     stabam.person.form.handler:
         class: '%stabam.person.form.handler.class%'
         arguments: ['@form.factory', '@router', '@stabam.person.handler']
+
+    stabam.util.inflector:
+        class: AppBundle\Util\Inflector\NoInflector

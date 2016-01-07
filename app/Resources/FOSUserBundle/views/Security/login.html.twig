@@ -9,9 +9,6 @@
 {% endblock stabam_main %}
 
 {% block fos_user_content %}
-{% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
 
     <div id="login-page" class="row">
         <div class="col s3 z-depth-4 card-panel offset-s4">
@@ -36,7 +33,9 @@
                         <p class="center login-form-text">Stabam App</p>
                     </div>
                 </div>
-
+                {% if error %}
+                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
                 <div class="row margin">
                     <div class="input-field col s12">
                         <i class="mdi-social-person-outline prefix"></i>

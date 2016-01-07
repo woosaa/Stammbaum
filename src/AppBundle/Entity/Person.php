@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Person
  *
@@ -131,6 +131,24 @@ class Person
      */
     private $vater;
 
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Faktum")
+     * @ORM\JoinTable(name="stabam_person_faktums",
+     *      joinColumns={@ORM\JoinColumn(name="person_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="faktum_id", referencedColumnName="id", unique=true)}
+     *      )
+     */
+    private $faktums;
+
+
+
+
+    public function __construct()
+    {
+        $this->faktums = new ArrayCollection();
+    }
+
     /**
      * @return int
      */
@@ -146,8 +164,6 @@ class Person
     {
         $this->vater = $vater;
     }
-
-
 
 
     /**
@@ -450,6 +466,23 @@ class Person
         return $this->sterbeort;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getFaktums()
+    {
+        return $this->faktums;
+    }
+
+    /**
+     * @param mixed $faktums
+     */
+    public function setFaktums($faktums)
+    {
+        $this->faktums = $faktums;
+    }
+
+
 
     /**
      * Display full name
@@ -462,4 +495,3 @@ class Person
             " ".$this->getNachname();
     }
 }
-

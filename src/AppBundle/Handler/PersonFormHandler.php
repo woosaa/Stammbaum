@@ -26,7 +26,7 @@ class PersonFormHandler
         $form = $this->formFactory
             ->create(PersonType::class, $entity, array(
             'action' => $this->router->generate('person_create'),
-            'method' => 'POST'
+            'method' => $request->getMethod()
         ));
 
         $form->handleRequest($request);

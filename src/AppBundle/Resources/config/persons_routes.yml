@@ -1,0 +1,11 @@
+api_person:
+    resource: "@AppBundle/Controller/api/PersonController.php"
+    type: rest
+    name_prefix:  api_
+
+
+api_faktum:
+    resource: "@AppBundle/Controller/api/FaktumController.php"
+    parent: api_person
+    type: rest
+    name_prefix:  api_

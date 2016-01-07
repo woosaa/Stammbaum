@@ -5,6 +5,7 @@ namespace AppBundle\Handler;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpKernel\Exception;
 
+
 class PersonHandler
 {
     public function __construct(ObjectManager $om, $entityClass)
@@ -36,6 +37,11 @@ class PersonHandler
     public function savePerson($entity){
         $this->om->persist($entity);
         $this->om->flush();
+    }
+
+
+    public function getFaktums($id){
+        return $this->getPerson($id)->getFaktums();
     }
 
 }

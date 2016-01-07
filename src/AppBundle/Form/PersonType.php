@@ -39,8 +39,8 @@ class PersonType extends AbstractType
             ->add('nachnameGeboren')
             ->add('geschlecht', ChoiceType::class, array(
                 'choices' => array(
-                    'm' => 'Männlich',
-                    'f' => 'Weiblich'
+                    'Männlich' => 'm',
+                    'Weiblich' => 'f'
                 ),
                 'multiple' => false,
                 'expanded' => true,
